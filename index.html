@@ -1,1 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Supabase JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Personal Finance Tracker</h1>
+        
+        <!-- Auth Section -->
+        <div id="auth-section" class="auth-section">
+            <h2>Sign In or Sign Up</h2>
+            <div id="auth-message" class="auth-message"></div>
+            
+            <div class="auth-form">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <div class="auth-buttons">
+                    <button id="sign-in-btn">Sign In</button>
+                    <button id="sign-up-btn">Sign Up</button>
+                </div>
+            </div>
+        </div>
 
+        <!-- App Section (Hidden until logged in) -->
+        <div id="app-section" class="app-section hidden">
+            <div class="user-header">
+                <p>Welcome, <span id="user-email"></span></p>
+                <button id="sign-out-btn">Sign Out</button>
+            </div>
+            
+            <div class="summary-container">
+                <div class="summary-card">
+                    <h2>Total Cash</h2>
+                    <p id="total-cash">$0.00</p>
+                </div>
+                <div class="summary-card">
+                    <h2>Credit Card Debt</h2>
+                    <p id="total-credit-debt">$0.00</p>
+                </div>
+                <div class="summary-card">
+                    <h2>Net Worth</h2>
+                    <p id="net-worth">$0.00</p>
+                </div>
+            </div>
+
+            <div class="accounts-section">
+                <h2>Accounts</h2>
+                <div class="add-account">
+                    <input type="text" id="new-account-name" placeholder="Account name">
+                    <select id="new-account-type">
+                        <option value="checking">Checking</option>
+                        <option value="savings">Savings</option>
+                        <option value="credit">Credit Card</option>
+                    </select>
+                    <button id="add-account-btn">Add Account</button>
+                </div>
+                
+                <div id="accounts-list"></div>
+            </div>
+
+            <div class="transfer-section">
+                <h2>Transfer Money</h2>
+                <select id="from-account"></select>
+                <select id="to-account"></select>
+                <input type="number" id="transfer-amount" placeholder="Amount" min="0" step="0.01">
+                <button id="transfer-btn">Transfer</button>
+            </div>
+        </div>
+
+        <div id="transaction-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 id="modal-title">Add Transaction</h2>
+                <input type="text" id="transaction-description" placeholder="Description">
+                <input type="number" id="transaction-amount" placeholder="Amount" step="0.01">
+                <select id="transaction-type">
+                    <option value="deposit">Deposit</option>
+                    <option value="withdrawal">Withdrawal</option>
+                </select>
+                <button id="save-transaction-btn">Save</button>
+                <div id="transactions-list"></div>
+            </div>
+        </div>
+
+        <div id="update-credit-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Update Credit Card Balance</h2>
+                <input type="number" id="credit-balance" placeholder="Current balance" step="0.01">
+                <button id="save-credit-btn">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
